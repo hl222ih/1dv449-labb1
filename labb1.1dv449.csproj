@@ -84,11 +84,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CourseInfo.cs" />
     <Compile Include="Models\Scraper.cs" />
+    <Compile Include="Models\ScrapeResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\labb1.1dv449.lridge.net - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\labb1.1dv449.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -14,7 +14,7 @@ namespace labb1._1dv449.Controllers
         // GET: api/Scraper
         public HttpResponseMessage Get()
         {
-            Scraper scraper = new Scraper();
+            Scraper scraper = new Scraper("http://coursepress.lnu.se/kurser");
             
             string jsonData = scraper.GetDataAsJson();
 
