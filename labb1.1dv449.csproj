@@ -91,8 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Properties\PublishProfiles\labb1.1dv449.lridge.net - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\labb1.1dv449.pubxml" />
+    <None Include="Properties\PublishProfiles\labb1.1dv449.lridge.net - Web Deploy.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

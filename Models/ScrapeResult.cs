@@ -8,21 +8,24 @@ namespace labb1._1dv449.Models
 {
     public class ScrapeResult
     {
-        private List<CourseInfo> courses { get; set; }
+        public List<CourseInfo> Courses { get; set; }
+        public int NumberOfCourses { get; set; }
+
+        public DateTime FinishedAt { get; set; }
 
         public ScrapeResult()
         {
-            courses = new List<CourseInfo>();
+            Courses = new List<CourseInfo>();
         }
 
         public void AddCourse(CourseInfo course)
         {
-            courses.Add(course);
+            Courses.Add(course);
         }
 
         public ReadOnlyCollection<CourseInfo> GetCourses()
         {
-            return courses.AsReadOnly();
+            return Courses.AsReadOnly();
         }
     }
 }

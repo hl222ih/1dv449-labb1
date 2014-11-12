@@ -19,12 +19,11 @@ namespace labb1._1dv449.Models
             result = new ScrapeResult();
             links = new List<string>();
             links.Add(startUrl);
-            Crawl();
         }
 
         public void Crawl()
         {
-            HtmlAgilityPack.HtmlWeb htmlWeb = new HtmlWeb();
+            HtmlWeb htmlWeb = new HtmlWeb();
 
             int count = 0;
             while (links.Count > count)
