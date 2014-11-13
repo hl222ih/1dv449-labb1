@@ -24,6 +24,8 @@ namespace labb1._1dv449.Models
         public void Crawl()
         {
             HtmlWeb htmlWeb = new HtmlWeb();
+            //identifying the bot when making http requests.
+            htmlWeb.UserAgent += " Bot by hl222ih@student.lnu.se for educational purposes.";
 
             int count = 0;
             while (links.Count > count)
@@ -37,8 +39,8 @@ namespace labb1._1dv449.Models
                         count++;
                         continue;
                     }
-                    HtmlDocument htmlDoc = htmlWeb.Load(url);
 
+                    HtmlDocument htmlDoc = htmlWeb.Load(url);
                     
                     //only need to add urls from startUrl
                     if (count == 0)
