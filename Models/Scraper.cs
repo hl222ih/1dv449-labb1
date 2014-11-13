@@ -6,6 +6,7 @@ using System.Web.Script.Serialization;
 using HtmlAgilityPack;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace labb1._1dv449.Models
 {
@@ -69,12 +70,6 @@ namespace labb1._1dv449.Models
                 count++;
             }
             result.FinishedAt = DateTime.Now;
-        }
-        public string GetDataAsJson()
-        {
-            var serializer = new JavaScriptSerializer();
-            var serializedResult = serializer.Serialize(this.result);
-            return serializedResult;
         }
 
         private List<string> GetCourseUrls(HtmlDocument htmlDoc, Uri baseUri)
@@ -238,5 +233,33 @@ namespace labb1._1dv449.Models
 
             return course;
         }
+
+        public string GetDataAsJson()
+        {
+            var serializer = new JavaScriptSerializer();
+            var serializedResult = serializer.Serialize(this.result);
+            return serializedResult;
+        }
+
+        public bool SaveDataAsJsonFile()
+        {
+            string filename = "";
+            try
+            {
+                //locally
+                //filename = HttpContext.Current.Server.MapPath("~/App_Data/result.json");
+                //server
+                filename = HttpContext.Current.Server.MapPath(@"~/data/result.json");
+                var json = GetDataAsJson();
+                File.Delete(filename);
+                File.WriteAllText(@filename, json);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
