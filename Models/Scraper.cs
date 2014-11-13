@@ -52,8 +52,8 @@ namespace labb1._1dv449.Models
 
                     HtmlDocument htmlDoc = htmlWeb.Load(url);
                     
-                    //only need to add urls from startUrl
-                    if (count == 0)
+                    //only need to add urls from startUrl and urls to pagination pages.
+                    if (count == 0 || url.Contains(@"/?bpage="))
                     {
                         Uri baseUri = new Uri(links[count], UriKind.Absolute);
                         var urls = GetCourseUrls(htmlDoc, baseUri);
