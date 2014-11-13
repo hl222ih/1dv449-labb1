@@ -26,13 +26,9 @@ namespace labb1._1dv449.Controllers
             //begin scraping
             scraper.Crawl(forceScraping);
 
-            //get the result from the scraping as json data
-            //string jsonData = scraper.GetDataAsJson();
-
-            //temporarily return the scraped json data in a response
+            //could return the scraped json data in a HttpWebResponse, but now saved to a file instead.
             //var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            //response.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            
+            //response.Content = new StringContent(scraper.GetDataAsJson(), Encoding.UTF8, "application/json");
             //return response;
         }
     }

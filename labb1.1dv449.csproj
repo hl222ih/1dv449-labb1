@@ -94,6 +94,7 @@
     <None Include="Properties\PublishProfiles\labb1.1dv449.lridge.net - Web Deploy.pubxml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="reflektion_lab1.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

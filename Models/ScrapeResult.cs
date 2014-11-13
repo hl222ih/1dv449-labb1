@@ -26,7 +26,21 @@ namespace labb1._1dv449.Models
 
         public void AddCourse(CourseInfo course)
         {
-            Courses.Add(course);
+            var added = false;
+            for (int i = 0; i < Courses.Count; i++ )
+            {
+                var cmpValue = Courses[i].CourseCode.CompareTo(course.CourseCode);
+                if (cmpValue == 1)
+                {
+                    Courses.Insert(i, course);
+                    added = true;
+                    break;
+                }
+            }
+            if (!added)
+            {
+                Courses.Add(course);
+            }
         }
 
         public ReadOnlyCollection<CourseInfo> GetCourses()
