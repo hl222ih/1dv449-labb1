@@ -250,6 +250,7 @@ namespace labb1._1dv449.Models
         {
             var serializer = new JavaScriptSerializer();
             var serializedResult = serializer.Serialize(this.result);
+            
             return serializedResult;
         }
 
