@@ -9,7 +9,13 @@ namespace labb1._1dv449.Models
     public class ScrapeResult
     {
         public List<CourseInfo> Courses { get; set; }
-        public int NumberOfCourses { get; set; }
+        public int NumberOfCourses
+        {
+            get
+            {
+                return Courses.Count;
+            }
+        }
 
         public DateTime FinishedAt { get; set; }
 
