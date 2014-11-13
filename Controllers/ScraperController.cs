@@ -12,19 +12,22 @@ namespace labb1._1dv449.Controllers
     public class ScraperController : ApiController
     {
         // GET: api/Scraper
-        public void Get()
+        public void Get(string force = "")
         {
             //prepare scraper
             Scraper scraper = new Scraper("http://coursepress.lnu.se/kurser");
 
+            bool forceScraping = false;
+            if (force.Equals("force",StringComparison.OrdinalIgnoreCase))
+            {
+                forceScraping = true;
+            }
+
             //begin scraping
-            scraper.Crawl();
+            scraper.Crawl(forceScraping);
 
             //get the result from the scraping as json data
-            string jsonData = scraper.GetDataAsJson();
-
-            //save the result as Json-file
-            scraper.SaveDataAsJsonFile();
+            //string jsonData = scraper.GetDataAsJson();
 
             //temporarily return the scraped json data in a response
             //var response = this.Request.CreateResponse(HttpStatusCode.OK);

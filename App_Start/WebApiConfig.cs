@@ -16,8 +16,8 @@ namespace labb1._1dv449
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{force}",
+                defaults: new { force = RouteParameter.Optional }
             );
 
         }

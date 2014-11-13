@@ -14,16 +14,25 @@ namespace labb1._1dv449.Models
     {
         private List<string> links;
         private ScrapeResult result;
+        private string filename;
 
         public Scraper(string startUrl)
         {
+            //locally
+            //filename = HttpContext.Current.Server.MapPath("~/App_Data/result.json");
+            //server
+            filename = HttpContext.Current.Server.MapPath(@"~/data/result.json");
+
             result = new ScrapeResult();
             links = new List<string>();
             links.Add(startUrl);
         }
 
-        public void Crawl()
+        public void Crawl(bool forceScraping = false)
         {
+            //don't scrape if it's recently done.
+            if (!forceScraping && IsRecentlyScraped()) return;
+
             HtmlWeb htmlWeb = new HtmlWeb();
             //identifying the bot when making http requests.
             htmlWeb.UserAgent += " Bot by hl222ih@student.lnu.se for educational purposes.";
@@ -69,7 +78,10 @@ namespace labb1._1dv449.Models
                 }
                 count++;
             }
-            result.FinishedAt = DateTime.Now;
+            //need to add an extra hour because of localization, should check for a better solution...
+            result.FinishedAt = DateTime.Now.AddHours(1);
+            //save the result as Json-file
+            SaveDataAsJsonFile();
         }
 
         private List<string> GetCourseUrls(HtmlDocument htmlDoc, Uri baseUri)
@@ -241,15 +253,11 @@ namespace labb1._1dv449.Models
             return serializedResult;
         }
 
-        public bool SaveDataAsJsonFile()
+        private bool SaveDataAsJsonFile()
         {
-            string filename = "";
             try
             {
-                //locally
-                //filename = HttpContext.Current.Server.MapPath("~/App_Data/result.json");
-                //server
-                filename = HttpContext.Current.Server.MapPath(@"~/data/result.json");
+                
                 var json = GetDataAsJson();
                 File.Delete(filename);
                 File.WriteAllText(@filename, json);
@@ -260,6 +268,20 @@ namespace labb1._1dv449.Models
             }
             return true;
         }
+        private bool IsRecentlyScraped()
+        {
+            var text = File.ReadAllText(filename);
+            var serializer = new JavaScriptSerializer();
+            dynamic jsonObject = serializer.DeserializeObject(text);
 
+            
+            var finishedAtJson = jsonObject["FinishedAt"];
+            DateTime finishedAt = (DateTime)finishedAtJson;
+            if (finishedAt.Subtract(DateTime.Now.AddMinutes(-5)).TotalMilliseconds > 0)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
